@@ -16,16 +16,24 @@ npm i -g generator-polymer-init-twc-app
 ```
 
 ## Use
-Create a new folder for your custom element project, cd into that folder and run `polymer init`:
+Create a new folder for your Polymer 2.0 project, cd into that folder and run `polymer init`:
 ```
-mkdir my-new-element-name
-cd my-new-element-name
+mkdir my-new-app-name
+cd my-new-app-name
 polymer init
 ```
 Choose the **twc-app** option from the list.
 
 ## Compile Typescript
-Compile typescript classes to ES6 class based Polymer 2.0 dom modules with the `twc` command.
+Compile typescript classes to ES6 class based Polymer 2.0 dom modules by running the `twc` command from the project's root folder.
+
+## Serve Your App
+```
+polymer serve
+```
+
+## Review the TWC Wiki
+Documentation on TWC can be found in the [Draccoz/twc Wiki](https://github.com/Draccoz/twc/wiki). 
 
 ## Issues
 Please submit issues through github at [mlisook generator-polymer-init-twc-element issues](https://github.com/mlisook/generator-polymer-init-twc-element/issues).

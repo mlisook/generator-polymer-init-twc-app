@@ -42,6 +42,22 @@ class GeneratorAppTsTwc extends Generator {
                 type: 'input',
                 name: 'description',
                 message: 'Brief description of the application',
+            },
+            {
+                type: 'list',
+                name: 'templateLocation',
+                message: 'Where do you want your HTML template?',
+                choices: [{
+                    name: 'as a string value in the @template() decorator',
+                    value: 'atTemplate'
+                }, {
+                    name: 'in an HTML file named your-element-name.template.html',
+                    value: 'inHTML'
+                }, {
+                    name: 'return a value from the template() method',
+                    value: 'templateFn'
+                }],
+                default: 1
             }
         ];
 
@@ -49,6 +65,14 @@ class GeneratorAppTsTwc extends Generator {
         this.props.elementClassName = this.props.elementName.replace(
             /(^|-)(\w)/g,
             (_match: string, _p0: string, p1: string) => p1.toUpperCase());
+        this.props.templateText = `
+        <style>
+        :host {
+          display: block;
+        }
+        </style>
+        <h2>Hello [[prop1]]!</h2>
+        `;
     }
 
     writing() {
@@ -68,13 +92,20 @@ class GeneratorAppTsTwc extends Generator {
             this.templatePath('test/_element/_element_test.html'),
             `test/${elementName}/${elementName}_test.html`,
             this.props);
+
+        if (this.props.templateLocation == 'inHTML') {
+            this.fs.copyTpl(
+                this.templatePath('src/_element/_element.template.html'), 
+                `src/${elementName}/${elementName}.template.html`, this.props);
+        }
     }
 
     install() {
         this.log(chalk.bold('\nProject generated!'));
         this.log('Installing dependencies...');
         this.installDependencies({
-            npm: false,
+            npm: true,
+            bower: true
         });
     }
 

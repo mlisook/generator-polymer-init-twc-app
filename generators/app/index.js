@@ -45,10 +45,34 @@ class GeneratorAppTsTwc extends Generator {
                     type: 'input',
                     name: 'description',
                     message: 'Brief description of the application',
+                },
+                {
+                    type: 'list',
+                    name: 'templateLocation',
+                    message: 'Where do you want your HTML template?',
+                    choices: [{
+                            name: 'as a string value in the @template() decorator',
+                            value: 'atTemplate'
+                        }, {
+                            name: 'in an HTML file named your-element-name.template.html',
+                            value: 'inHTML'
+                        }, {
+                            name: 'return a value from the template() method',
+                            value: 'templateFn'
+                        }],
+                    default: 1
                 }
             ];
             this.props = yield this.prompt(prompts);
             this.props.elementClassName = this.props.elementName.replace(/(^|-)(\w)/g, (_match, _p0, p1) => p1.toUpperCase());
+            this.props.templateText = `
+        <style>
+        :host {
+          display: block;
+        }
+        </style>
+        <h2>Hello [[prop1]]!</h2>
+        `;
         });
     }
     writing() {
@@ -56,6 +80,9 @@ class GeneratorAppTsTwc extends Generator {
         this.fs.copyTpl(`${this.templatePath()}/**/?(.)!(_)*`, this.destinationPath(), this.props);
         this.fs.copyTpl(this.templatePath('src/_element/_element.ts'), `src/${elementName}/${elementName}.ts`, this.props);
         this.fs.copyTpl(this.templatePath('test/_element/_element_test.html'), `test/${elementName}/${elementName}_test.html`, this.props);
+        if (this.props.templateLocation == 'inHTML') {
+            this.fs.copyTpl(this.templatePath('src/_element/_element.template.html'), `src/${elementName}/${elementName}.template.html`, this.props);
+        }
     }
     install() {
         this.log(chalk.bold('\nProject generated!'));
