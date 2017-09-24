@@ -1,0 +1,41 @@
+{
+  "name": "generator-polymer-init-twc-app",
+  "version": "0.1.0",
+  "description": "Simple Polymer 2 app in Typescript using TWC",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlisook/generator-polymer-init-twc-app.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "polymer",
+    "typescript",
+    "init",
+    "twc",
+    "custom-element",
+    "app",
+    "pwa",
+    "generator",
+    "yeoman",
+    "yeoman-generator"
+  ],
+  "author": "Murray Lisook",
+  "license": "MIT",
+  "files": [
+    "generators/app"
+  ],
+  "devDependencies": {
+    "twc": "^0.4.2-rc",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/yeoman-generator": "^1.0.3",
+    "chalk": "^2.1.0",
+    "path": "^0.12.7",
+    "yeoman-generator": "^1.1.1"
+  }
+}
