@@ -1,6 +1,6 @@
 {
   "name": "generator-polymer-init-twc-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple Polymer 2 app in Typescript using TWC",
   "main": "index.js",
   "repository": {

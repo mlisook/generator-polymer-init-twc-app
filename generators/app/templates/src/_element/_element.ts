@@ -8,13 +8,9 @@ import { CustomElement, attr, compute, notify, observe, style, template } from '
  * @polymer 
  */
 @CustomElement()
-@template(`<style>
-:host {
-  display: block;
-}
-</style>
-<h2>Hello [[prop1]]!</h2>`)
-export default class <%= elementClassName %> extends Polymer.Element {
+<% if (templateLocation == 'inHTML') { %>@template('<%= elementName %>.template.html')
+<% } %><% if (templateLocation == 'atTemplate') { %>@template(`<%- templateText %>`)
+<% } %>export default class <%= elementClassName %> extends Polymer.Element {
   /**
    * A sample property with a default value
    */
@@ -24,9 +20,13 @@ export default class <%= elementClassName %> extends Polymer.Element {
    * illustrates a computed property declaration, using reflect to 
    * attribute and notify.
    */
-  @compute((prop1: string) => { return prop1 == "foo"; }) @attr() @notify() fooStatus: boolean;
-  
-  connectedCallback(): void {
+  @compute((prop1: string) => { return prop1 == "foo"; }) @attr() @notify() fooStatus: boolean;  
+  <% if (templateLocation == 'templateFn') { %>
+    template() {
+        return `<%- templateText %>`;
+    }
+    <% } %>
+    connectedCallback(): void {
       super.connectedCallback();
       // do more stuff
   }
