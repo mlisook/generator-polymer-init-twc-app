@@ -13,7 +13,7 @@ npm i -g polymer-cli
 
 From the root folder of your application run:
 ```
-twc
+$ npm run twc
 ```
 
 ## Viewing Your Application
@@ -22,10 +22,27 @@ twc
 $ polymer serve
 ```
 
+## Generate Type Definitions for Other Polymer Elements
+
+Use the `potts` script to generate basic type definitions for components in `bower.json`.  From the project root run:
+```
+$ npm run potts
+```
+This will create `potts.d.ts` in the project root folder.  Add that file to your `tsconfig.json` file:
+```js
+ "include": [
+    "./potts.d.ts",
+    "node_modules/twc/decorators/polymer.d.ts",
+    "node_modules/polymer2-types/*.d.ts",
+     "./src/**/*.ts",
+     "test/**/*.ts"
+    ]
+```
+
 ## Building Your Application for Production
 
 ```
-$ twc
+$ npm run twc
 $ polymer build
 ```
 

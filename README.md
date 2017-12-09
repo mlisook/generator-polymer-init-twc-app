@@ -25,7 +25,10 @@ polymer init
 Choose the **twc-app** option from the list.
 
 ## Compile Typescript
-Compile typescript classes to ES6 class based Polymer 2.0 dom modules by running the `twc` command from the project's root folder.
+Compile typescript classes to ES6 class based Polymer 2.0 dom modules by running the `twc` script from the project's root folder.
+```
+npm run twc
+```
 
 ## Serve Your App
 ```
