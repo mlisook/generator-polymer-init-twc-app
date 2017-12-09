@@ -1,6 +1,6 @@
 {
   "name": "generator-polymer-init-twc-app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Simple Polymer 2 app in Typescript using TWC",
   "main": "index.js",
   "repository": {
@@ -17,7 +17,6 @@
     "twc",
     "custom-element",
     "app",
-    "pwa",
     "generator",
     "yeoman",
     "yeoman-generator"
@@ -28,8 +27,8 @@
     "generators/app"
   ],
   "devDependencies": {
-    "twc": "^0.4.2-rc",
-    "typescript": "^2.5.2"
+    "twc": "^0.5.2",
+    "typescript": "^2.6.2"
   },
   "dependencies": {
     "@types/chalk": "^0.4.31",
